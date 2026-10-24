@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result | Result Portal</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="result-container">
+        <header class="result-header">
+            <div class="brand">🎓 Student Result Management System</div>
+            <h1>Student Result</h1>
+            <p>Your academic performance summary</p>
+        </header>
+
+        <section class="student-card">
+            <div class="student-icon">👤</div>
+            <div>
+                <span class="muted-label">Student Name</span>
+                <h2>{{ name }}</h2>
+            </div>
+        </section>
+
+        <section class="result-section">
+            <h2 class="section-title">📚 Subject Marks</h2>
+            <div class="subject-grid">
+                {% for mark in marks %}
+                <div class="subject-card subject-{{ loop.index }}">
+                    <span>Subject {{ loop.index }}</span>
+                    <strong>{{ mark }}</strong>
+                    <small>out of 100</small>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="result-section">
+            <h2 class="section-title">📊 Result Summary</h2>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <span>Total Marks</span>
+                    <strong>{{ total }}</strong>
+                    <small>out of 300</small>
+                </div>
+
+                <div class="summary-card">
+                    <span>Average</span>
+                    <strong>{{ average }}</strong>
+                    <small>out of 100</small>
+                </div>
+
+                <div class="summary-card">
+                    <span>Grade</span>
+                    <strong class="grade-value">{{ grade }}</strong>
+                </div>
+
+                <div class="summary-card status-card">
+                    <span>Final Result</span>
+                    <strong class="status-badge
+                        {{ 'pass-badge' if status == 'PASS' else 'fail-badge' }}">
+                        {{ status }}
+                    </strong>
+                </div>
+            </div>
+        </section>
+
+        <footer class="result-footer">
+            <a class="back-button" href="/">← Enter Another Student</a>
+        </footer>
+    </main>
+</body>
+</html>

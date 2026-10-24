@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student Result</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        .edit-container {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+        }
+
+        .edit-container input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            margin: 8px 0 16px;
+        }
+
+        .save-btn {
+            width: 100%;
+            padding: 12px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="edit-container">
+        <h1>Edit Student Details</h1>
+        <p>Change the name or marks and save your changes.</p>
+
+        <form method="POST">
+            <label for="name">Student Name</label>
+            <input type="text" id="name" name="name"
+                   value="{{ student['name'] }}" required>
+
+            <label for="mark1">Subject 1 Marks</label>
+            <input type="number" id="mark1" name="mark1"
+                   min="0" max="100" step="any"
+                   value="{{ student['mark1'] }}" required>
+
+            <label for="mark2">Subject 2 Marks</label>
+            <input type="number" id="mark2" name="mark2"
+                   min="0" max="100" step="any"
+                   value="{{ student['mark2'] }}" required>
+
+            <label for="mark3">Subject 3 Marks</label>
+            <input type="number" id="mark3" name="mark3"
+                   min="0" max="100" step="any"
+                   value="{{ student['mark3'] }}" required>
+
+            <button class="save-btn" type="submit">
+                Save Changes
+            </button>
+        </form>
+
+        <p><a href="{{ url_for('students') }}">Cancel and Go Back</a></p>
+    </div>
+</body>
+</html>
